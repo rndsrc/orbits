@@ -17,7 +17,7 @@ data *input(FILE *f)
 		if(d->n >= d->m)
 			d = (data *)realloc(d, sizeof(data) +
 			                       sizeof(particle) * (d->m *= 2));
-		sscanf(line, "%lg %lg %lg %lg %lg %lg %lg",
+		sscanf(line, "%lg\t%lg\t%lg\t%lg\t%lg\t%lg\t%lg",
 		       &d->p[d->n].m,
 		       &d->p[d->n].r.x, &d->p[d->n].r.y, &d->p[d->n].r.z,
 		       &d->p[d->n].u.x, &d->p[d->n].u.y, &d->p[d->n].u.z);
