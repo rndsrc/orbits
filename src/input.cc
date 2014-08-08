@@ -28,5 +28,10 @@ data *input(FILE *f)
 		++d->n;
 	}
 
-	return d;
+	if(d->n)
+		return d;
+	else {
+		free(d);
+		return NULL;
+	}
 }
