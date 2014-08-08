@@ -11,7 +11,8 @@ int main(int argc, char **argv)
 	}
 	printf("dt = %g\n", dt);
 
-	data *d = input(stdin);
+	FILE *f = argc > 2 ? fopen(argv[argc-1], "r") : NULL;
+	data *d = input(f ? f : stdin);
 
 	output(d, stdout);
 

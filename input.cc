@@ -16,7 +16,7 @@ data *input(FILE *f)
 
 	char line[LINE_SZ];
 	while(fgets(line, sizeof(line), f)) {
-		if(line[0] == '#')
+		if(line[0] == '#' || line[0] == '\n')
 			continue;
 		if(d->n >= d->m)
 			d = (data *)realloc(d, sizeof(data) +
