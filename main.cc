@@ -2,6 +2,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
+#include <unistd.h>
 
 int main(int argc, char **argv)
 {
@@ -12,6 +13,9 @@ int main(int argc, char **argv)
 
 	real dt = argc > 1 ? atof(argv[1]) : 1e-3;
 	printf("dt = %g\n", dt);
+
+	if(isatty(fileno(stdin)))
+		printf("Please input initial conditions:\n");
 
 	return 0;
 }
