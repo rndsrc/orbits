@@ -1,6 +1,7 @@
 #include "orbits.h"
-#include <cstdlib>
 #include <unistd.h>
+#include <cstdlib>
+#include <cmath>
 
 static int usage(const char *cmd)
 {
@@ -31,9 +32,9 @@ int main(int argc, char **argv)
 	if(d == NULL)
 		return usage(argv[0]);
 
-	for(size_t i = 0; i < 100; ++i) {
-		for(size_t h = 0; h < 6283; ++h)
-			scm(d, 1e-3);
+	for(size_t i = 0; i < 3200; ++i) {
+		for(size_t h = 0; h < 32; ++h)
+			scm(d, 2 * M_PI / 1024);
 
 		output(out(fmt, i+1), d, argv[0], fmt);
 	}

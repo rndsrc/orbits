@@ -7,8 +7,8 @@ fi
 echo "Comparing: $input"
 make
 
-bin/Euler < $input | awk '{if (count++%3==2) print $0;}' > Euler.txt
-bin/DK    < $input | awk '{if (count++%3==2) print $0;}' > DK.txt
-bin/KD    < $input | awk '{if (count++%3==2) print $0;}' > KD.txt
-bin/KDK   < $input | awk '{if (count++%3==2) print $0;}' > KDK.txt
-bin/DKD   < $input | awk '{if (count++%3==2) print $0;}' > DKD.txt
+tail -n1 $input > Euler.txt; bin/Euler < $input | awk '{if (count++%3==2) print $0;}' >> Euler.txt
+tail -n1 $input > DK.txt;    bin/DK    < $input | awk '{if (count++%3==2) print $0;}' >> DK.txt
+tail -n1 $input > KD.txt;    bin/KD    < $input | awk '{if (count++%3==2) print $0;}' >> KD.txt
+tail -n1 $input > KDK.txt;   bin/KDK   < $input | awk '{if (count++%3==2) print $0;}' >> KDK.txt
+tail -n1 $input > DKD.txt;   bin/DKD   < $input | awk '{if (count++%3==2) print $0;}' >> DKD.txt

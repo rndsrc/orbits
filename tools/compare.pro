@@ -1,6 +1,8 @@
 function load, name
 
-  in = dblarr(7,100)
+  spawn, 'cat '+name+'.txt | wc -l', n
+  n  = long64(n)
+  in = dblarr(7,n)
 
   openr, lun, name+'.txt', /get_lun
   readf, lun, in
@@ -11,7 +13,7 @@ function load, name
   rr = total(in[*,1:3]^2,2)
   uu = total(in[*,4:6]^2,2)
 
-  return, {m:in[*,0], $
+  return, {t:dindgen(n)/32,      m:in[*,0], $
            x:in[*,1], y:in[*,2], z:in[*,3], $
            u:in[*,4], v:in[*,5], w:in[*,6], $
            E:0.5 * uu - 1.0 / sqrt(rr)}
@@ -24,13 +26,15 @@ pro compare
   KD    = load('KD')
   DKD   = load('DKD')
   KDK   = load('KDK')
-  t     = dindgen(100)+1
 
-  plot, [1, 100], [-0.7, -0.2], /nodata
-  oplot, t, Euler.E & print, min(Euler.E), max(Euler.E)
-  oplot, t, DK.E    & print, min(DK.E),    max(DK.E)
-  oplot, t, KD.E    & print, min(KD.E),    max(KD.E)
-  oplot, t, DKD.E   & print, min(DKD.E),   max(DKD.E)
-  oplot, t, KDK.E   & print, min(KDK.E),   max(KDK.E)
+  device, decompose=0
+  loadct, 39
+  plot, [0,100], [-0.7, 0], /nodata
+
+  oplot, Euler.t, Euler.E, color=45  & print, 'Euler:', min(Euler.E), max(Euler.E)
+  oplot, DK.t,    DK.E,    color=87  & print, 'DK:',    min(DK.E),    max(DK.E)
+  oplot, KD.t,    KD.E,    color=129 & print, 'KD:',    min(KD.E),    max(KD.E)
+  oplot, DKD.t,   DKD.E,   color=171 & print, 'DKD:',   min(DKD.E),   max(DKD.E)
+  oplot, KDK.t,   KDK.E,   color=213 & print, 'KDK:',   min(KDK.E),   max(KDK.E)
 
 end
