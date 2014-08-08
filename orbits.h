@@ -20,5 +20,6 @@ typedef struct {
 } data;
 
 data *input(FILE *);
+void output(const data *, FILE *);
 
 #endif // ORBITS_H

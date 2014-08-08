@@ -13,5 +13,7 @@ int main(int argc, char **argv)
 
 	data *d = input(stdin);
 
+	output(d, stdout);
+
 	return 0;
 }
