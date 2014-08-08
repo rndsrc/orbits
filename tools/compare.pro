@@ -24,12 +24,13 @@ pro compare
   KD    = load('KD')
   DKD   = load('DKD')
   KDK   = load('KDK')
+  t     = dindgen(100)+1
 
-  plot, [0, 100], [-0.6, 0.2], /nodata
-  oplot, Euler.E & print, min(Euler.E), max(Euler.E)
-  oplot, DK.E    & print, min(DK.E),    max(DK.E)
-  oplot, KD.E    & print, min(KD.E),    max(KD.E)
-  oplot, DKD.E   & print, min(DKD.E),   max(DKD.E)
-  oplot, KDK.E   & print, min(KDK.E),   max(KDK.E)
+  plot, [1, 100], [-0.7, -0.2], /nodata
+  oplot, t, Euler.E & print, min(Euler.E), max(Euler.E)
+  oplot, t, DK.E    & print, min(DK.E),    max(DK.E)
+  oplot, t, KD.E    & print, min(KD.E),    max(KD.E)
+  oplot, t, DKD.E   & print, min(DKD.E),   max(DKD.E)
+  oplot, t, KDK.E   & print, min(KDK.E),   max(KDK.E)
 
 end
