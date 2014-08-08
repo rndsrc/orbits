@@ -22,4 +22,6 @@ typedef struct {
 data *input(FILE *);
 void output(FILE *, const data *, const char *, real);
 
+void Euler(particle *, vector *, size_t, real);
+
 #endif // ORBITS_H
