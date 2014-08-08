@@ -19,16 +19,22 @@ typedef struct {
 	particle  p[];
 } data;
 
-data *input(FILE *);
-void output(FILE *, const data *, const char *, real);
+typedef void (scheme)(data *, real);
+
+scheme *get_scheme(const char *);
+data   *input(FILE *);
+void   output(FILE *, const data *, const char *, real);
 
 void acc(vector *, const particle *, size_t);
 
-void Euler(data *, real);
-void DK   (data *, real);
-void KD   (data *, real);
-
-void DKD  (data *, real);
-void KDK  (data *, real);
+extern "C" {
+	// 1st order schemes
+	void Euler(data *, real);
+	void DK   (data *, real);
+	void KD   (data *, real);
+	// 2nd order schemes
+	void DKD  (data *, real);
+	void KDK  (data *, real);
+}
 
 #endif // ORBITS_H
