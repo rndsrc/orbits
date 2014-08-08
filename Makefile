@@ -9,5 +9,5 @@ clean:
 	@for p in src/[[:upper:]]*.cc; do \
 		rm -f bin/$${p:4:$${#p}-7}; \
 	done
-	rm -f bin/orbits *~
+	rm -f bin/orbits */*~
 	@if [ -z "`ls bin 2>&1`" ]; then rmdir bin; fi
