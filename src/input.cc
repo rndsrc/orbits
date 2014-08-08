@@ -1,6 +1,5 @@
 #include "orbits.h"
 #include <cstdlib>
-#include <unistd.h>
 
 #define INIT_M  64
 #define LINE_SZ 1024
@@ -10,9 +9,6 @@ data *input(FILE *f)
 	data *d = (data *)malloc(sizeof(data) + sizeof(particle) * INIT_M);
 	d->n = 0;
 	d->m = INIT_M;
-
-	if(isatty(fileno(f)))
-		printf("Please input initial conditions [end with Ctr+D]:\n");
 
 	char line[LINE_SZ];
 	while(fgets(line, sizeof(line), f)) {
