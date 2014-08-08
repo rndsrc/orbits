@@ -15,7 +15,12 @@ int main(int argc, char **argv)
 	printf("dt = %g\n", dt);
 
 	if(isatty(fileno(stdin)))
-		printf("Please input initial conditions:\n");
+		printf("Please input initial conditions [end by Ctr+D]:\n");
+
+	char line[1024];
+	while(fgets(line, sizeof(line), stdin))
+		if(line[0] != '#')
+			fputs(line, stdout);
 
 	return 0;
 }
