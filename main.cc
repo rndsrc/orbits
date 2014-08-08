@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	data *d = input(f ? f : stdin);
 
 	for(size_t h = 0; h < 6283; ++h) {
-		Euler(d, dt);
+		DK(d, dt);
 		output(stdout, d, argv[0], dt);
 	}
 
