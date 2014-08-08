@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 	}
 	printf("dt = %g\n", dt);
 
-	data *d = init(stdin);
+	data *d = input(stdin);
 
 	return 0;
 }

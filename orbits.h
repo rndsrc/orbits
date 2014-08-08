@@ -19,6 +19,6 @@ typedef struct {
 	particle  p[];
 } data;
 
-data *init(FILE *);
+data *input(FILE *);
 
 #endif // ORBITS_H

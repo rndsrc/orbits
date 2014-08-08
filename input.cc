@@ -5,7 +5,7 @@
 #define INIT_M  64
 #define LINE_SZ 1024
 
-data *init(FILE *f)
+data *input(FILE *f)
 {
 	data *d = (data *)malloc(sizeof(data) + sizeof(particle) * INIT_M);
 	d->n = 0;
