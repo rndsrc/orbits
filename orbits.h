@@ -25,6 +25,7 @@ void output(FILE *, const data *, const char *, real);
 void acc(vector *, const particle *, size_t);
 
 void Euler(data *, real);
-void DK(data *, real);
+void DK   (data *, real);
+void KD   (data *, real);
 
 #endif // ORBITS_H
