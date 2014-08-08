@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 input=tests/circle
-if (( $# >= 1 )) && [ -e tests/$1 ] ; then
-    input=tests/$1
+if (( $# >= 1 )) && [ -e $1 ] ; then
+    input=$1
 fi
 echo "Comparing: $input"
 make
