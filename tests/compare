@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+make
+
+bin/Euler < tests/circle | awk '{if (count++%3==2) print $0;}' > Euler.txt
+bin/DK    < tests/circle | awk '{if (count++%3==2) print $0;}' > DK.txt
+bin/KD    < tests/circle | awk '{if (count++%3==2) print $0;}' > KD.txt
+bin/KDK   < tests/circle | awk '{if (count++%3==2) print $0;}' > KDK.txt
+bin/DKD   < tests/circle | awk '{if (count++%3==2) print $0;}' > DKD.txt
