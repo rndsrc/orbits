@@ -2,9 +2,13 @@
 #include <cstdlib>
 #include <unistd.h>
 
-void output(FILE *f, const data *d, const char *cmd, real dt)
+void output(FILE *f, const data *d, const char *cmd, const char *fmt)
 {
-	fprintf(f, "#!%s %g\n", cmd, dt);
+	if(fmt)
+		fprintf(f, "#!%s %s\n", cmd, fmt);
+	else
+		fprintf(f, "#!%s\n", cmd);
+
 	for(size_t i = 0; i < d->n; ++i)
 		fprintf(f, "%g %g %g %g %g %g %g\n",
 		        d->p[i].m,
