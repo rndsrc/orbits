@@ -20,6 +20,6 @@ typedef struct {
 } data;
 
 data *input(FILE *);
-void output(const data *, FILE *);
+void output(FILE *, const data *, const char *, real);
 
 #endif // ORBITS_H
