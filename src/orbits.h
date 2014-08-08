@@ -28,4 +28,6 @@ void Euler(data *, real);
 void DK   (data *, real);
 void KD   (data *, real);
 
+void DKD  (data *, real);
+
 #endif // ORBITS_H

@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 		CASE("Euler") scheme = &Euler;
 		CASE("DK")    scheme = &DK;
 		CASE("KD")    scheme = &KD;
+		CASE("DKD")   scheme = &DKD;
 	}
 
 	real dt = argc > 1 ? atof(argv[1]) : 0.0;
