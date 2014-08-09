@@ -25,7 +25,8 @@ scheme *get_scheme(const char *);
 data   *input(FILE *);
 void   output(FILE *, const data *, const char *, const char *);
 
-void acc(vector *, const particle *, size_t);
+void acc (vector *, const particle *, size_t);
+void acc2(vector *, const particle *, size_t, real);
 
 extern "C" {
 	// 1st order schemes
@@ -35,6 +36,8 @@ extern "C" {
 	// 2nd order schemes
 	void DKD  (data *, real);
 	void KDK  (data *, real);
+	// 4th order schemes
+	void ChinC(data *, real);
 }
 
 #endif // ORBITS_H
