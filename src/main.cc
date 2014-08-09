@@ -35,11 +35,13 @@ int main(int argc, char **argv)
 	size_t n_dump  = 3200;
 	size_t n_inner = get_factor(argv[0]);
 
+	fprintf(stderr, "%.16g\n", energy(d->p, d->n));
 	for(size_t i = 0; i < n_dump; ++i) {
 		real dt = dt_dump / n_inner;
 		for(size_t h = 0; h < n_inner; ++h)
 			scm(d, dt);
 
+		fprintf(stderr, "%.16g\n", energy(d->p, d->n));
 		output(out(fmt, i+1), d, argv[0], fmt);
 	}
 	return 0;
