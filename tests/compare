@@ -12,3 +12,4 @@ tail -n1 $input > DK.txt;    bin/DK    < $input | awk '{if (count++%3==2) print 
 tail -n1 $input > KD.txt;    bin/KD    < $input | awk '{if (count++%3==2) print $0;}' >> KD.txt
 tail -n1 $input > KDK.txt;   bin/KDK   < $input | awk '{if (count++%3==2) print $0;}' >> KDK.txt
 tail -n1 $input > DKD.txt;   bin/DKD   < $input | awk '{if (count++%3==2) print $0;}' >> DKD.txt
+tail -n1 $input > ChinC.txt; bin/ChinC < $input | awk '{if (count++%3==2) print $0;}' >> ChinC.txt

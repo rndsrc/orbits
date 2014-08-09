@@ -26,15 +26,17 @@ pro compare
   KD    = load('KD')
   DKD   = load('DKD')
   KDK   = load('KDK')
+  ChinC = load('ChinC')
 
   device, decompose=0
   loadct, 39
   plot, [0,100], [-0.7, 0], /nodata
 
-  oplot, Euler.t, Euler.E, color=45  & print, 'Euler:', min(Euler.E), max(Euler.E)
-  oplot, DK.t,    DK.E,    color=87  & print, 'DK:',    min(DK.E),    max(DK.E)
-  oplot, KD.t,    KD.E,    color=129 & print, 'KD:',    min(KD.E),    max(KD.E)
-  oplot, DKD.t,   DKD.E,   color=171 & print, 'DKD:',   min(DKD.E),   max(DKD.E)
-  oplot, KDK.t,   KDK.E,   color=213 & print, 'KDK:',   min(KDK.E),   max(KDK.E)
+  oplot, Euler.t, Euler.E, color=44  & print, 'Euler:', min(Euler.E), max(Euler.E)
+  oplot, DK.t,    DK.E,    color=86  & print, 'DK:',    min(DK.E),    max(DK.E)
+  oplot, KD.t,    KD.E,    color=128 & print, 'KD:',    min(KD.E),    max(KD.E)
+  oplot, DKD.t,   DKD.E,   color=170 & print, 'DKD:',   min(DKD.E),   max(DKD.E)
+  oplot, KDK.t,   KDK.E,   color=212 & print, 'KDK:',   min(KDK.E),   max(KDK.E)
+  oplot, ChinC.t, ChinC.E, color=254 & print, 'ChinC:', min(ChinC.E), max(ChinC.E)
 
 end
