@@ -11,7 +11,8 @@ echo "Comparing $n-body problem: $in"
 make
 
 for s in Euler DK KD KDK DKD ChinC; do
-    echo $n > $s.txt                                          # n-body
-    cat      $in | awk '{if (count++%3) print $0;}' >> $s.txt # initial
-    bin/$s < $in | awk '{if (count++%3) print $0;}' >> $s.txt # outputs
+    echo $n > $s.dat                                     # n-body
+    cat $in | awk '{if (count++%3) print $0;}' >> $s.dat # initial
+    bin/$s 2> $s.eng < $in \
+	    | awk '{if (count++%3) print $0;}' >> $s.dat # outputs
 done
