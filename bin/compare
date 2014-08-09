@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
-input=tests/circle
+in=tests/circle
 if (( $# >= 1 )) && [ -e $1 ] ; then
-    input=$1
+    in=$1
 fi
-echo "Comparing: $input"
+
+n=`cat $in | wc -l`
+n=`expr $n - 1`
+echo "Comparing $n-body problem: $in"
 make
 
-tail -n1 $input > Euler.txt; bin/Euler < $input | awk '{if (count++%3==2) print $0;}' >> Euler.txt
-tail -n1 $input > DK.txt;    bin/DK    < $input | awk '{if (count++%3==2) print $0;}' >> DK.txt
-tail -n1 $input > KD.txt;    bin/KD    < $input | awk '{if (count++%3==2) print $0;}' >> KD.txt
-tail -n1 $input > KDK.txt;   bin/KDK   < $input | awk '{if (count++%3==2) print $0;}' >> KDK.txt
-tail -n1 $input > DKD.txt;   bin/DKD   < $input | awk '{if (count++%3==2) print $0;}' >> DKD.txt
-tail -n1 $input > ChinC.txt; bin/ChinC < $input | awk '{if (count++%3==2) print $0;}' >> ChinC.txt
+for s in Euler DK KD KDK DKD ChinC; do
+    echo $n > $s.txt                                          # n-body
+    cat      $in | awk '{if (count++%3) print $0;}' >> $s.txt # initial
+    bin/$s < $in | awk '{if (count++%3) print $0;}' >> $s.txt # outputs
+done
