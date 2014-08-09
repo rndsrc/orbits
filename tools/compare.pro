@@ -1,11 +1,11 @@
 pro compare
 
-  Euler = load('Euler.txt')
-  DK    = load('DK.txt')
-  KD    = load('KD.txt')
-  DKD   = load('DKD.txt')
-  KDK   = load('KDK.txt')
-  ChinC = load('ChinC.txt')
+  Euler = load('Euler')
+  DK    = load('DK')
+  KD    = load('KD')
+  DKD   = load('DKD')
+  KDK   = load('KDK')
+  ChinC = load('ChinC')
 
   window, xs=640, ys=480
   device, decompose=0
