@@ -35,5 +35,7 @@ void acc2(vector *a, const particle *p, size_t n, real dt)
 		a[i].x = ax - h * (ax * axx + ay * axy + az * azx);
 		a[i].y = ay - h * (ax * axy + ay * ayy + az * ayz);
 		a[i].z = az - h * (ax * azx + ay * ayz + az * azz);
+
+		// 60 FLOP + 1 sqrt()
 	}
 }

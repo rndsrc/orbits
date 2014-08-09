@@ -27,14 +27,18 @@ int main(int argc, char **argv)
 	scheme *scm = get_scheme(argv[0]);
 	FILE   *ini = (tty && argc > 1) ? fopen(argv[(argc--)-1], "r") : stdin;
 	char   *fmt = argc > 1 ? argv[argc-1] : NULL;
-
-	data *d = input(ini);
+	data   *d   = input(ini);
 	if(d == NULL)
 		return usage(argv[0]);
 
-	for(size_t i = 0; i < 3200; ++i) {
-		for(size_t h = 0; h < 32; ++h)
-			scm(d, 2 * M_PI / 1024);
+	real   dt_dump = 2.0 * M_PI / 32;
+	size_t n_dump  = 3200;
+	size_t n_inner = get_factor(argv[0]);
+
+	for(size_t i = 0; i < n_dump; ++i) {
+		real dt = dt_dump / n_dump;
+		for(size_t h = 0; h < n_inner; ++h)
+			scm(d, dt);
 
 		output(out(fmt, i+1), d, argv[0], fmt);
 	}

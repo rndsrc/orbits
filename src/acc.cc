@@ -14,6 +14,6 @@ void acc(vector *a, const particle *p, size_t n)
 			a[i].x += f * dx;
 			a[i].y += f * dy;
 			a[i].z += f * dz;
-		}
+		} // 16 FLOP + 1 sqrt()
 	}
 }

@@ -22,8 +22,10 @@ typedef struct {
 typedef void (scheme)(data *, real);
 
 scheme *get_scheme(const char *);
-data   *input(FILE *);
-void   output(FILE *, const data *, const char *, const char *);
+size_t  get_factor(const char *);
+
+data *input(FILE *);
+void output(FILE *, const data *, const char *, const char *);
 
 void acc (vector *, const particle *, size_t);
 void acc2(vector *, const particle *, size_t, real);
