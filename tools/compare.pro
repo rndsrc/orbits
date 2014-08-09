@@ -34,7 +34,7 @@ pro compare
   window, xs=640, ys=480
   device, decompose=0
   loadct, 39
-  plot, [0,100], [1e-15, 1], /nodata, /yLog, $
+  plot, [0,100], [1e-16, 1], /nodata, /yLog, /yStyle, $
         xTitle='time (orbits)', yTitle=textoidl('|E/E_0-1|')
 
   oplot, Euler.t, abs(Euler.d), color=44  & print, 'Euler:', max(abs(Euler.d))
