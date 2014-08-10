@@ -18,10 +18,10 @@ void acc2(vector *a, vector *b, const particle *p, size_t n, real dt)
 			real fy = f * (a[j].y - a[i].y);
 			real fz = f * (a[j].z - a[i].z);
 			real df = dx * fx + dy * fy + dz * fz;
-			real rr3= rr / 3;
+			real rr3= rr / 3.0;
 			b[i].x += dx * df - fx * rr3;
 			b[i].y += dy * df - fy * rr3;
-			b[i].x += dz * df - fz * rr3;
+			b[i].z += dz * df - fz * rr3;
 		} // 35 FLOP + 1 sqrt()
 	}
 
