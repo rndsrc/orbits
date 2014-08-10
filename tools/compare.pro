@@ -10,8 +10,8 @@ pro compare
   window, xs=640, ys=480
   device, decompose=0
   loadct, 39
-  plot, [0,100], [1e-16, 1], /nodata, /yLog, /yStyle, $
-        xTitle='time', yTitle=textoidl('|E/E_0-1|')
+  plot, [min(Euler.t),max(Euler.t)], [1e-16, 1], /nodata, $
+        /xStyle, /yStyle, /yLog, xTitle='time', yTitle=textoidl('|E/E_0-1|')
 
   oplot, Euler.t, abs(Euler.d), color=44  & print, 'Euler:', max(abs(Euler.d))
   oplot, DK.t,    abs(DK.d),    color=86  & print, 'DK:',    max(abs(DK.d))
