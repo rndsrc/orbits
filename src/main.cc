@@ -31,9 +31,9 @@ int main(int argc, char **argv)
 	if(d == NULL)
 		return usage(argv[0]);
 
-	real   dt_dump = 2.0 * M_PI / 32;
-	size_t n_dump  = 3200;
-	size_t n_inner = get_factor(argv[0]) * 10;
+	real   dt_dump = 1.0; // 1 "year" for the solar system example
+	size_t n_dump  = 100000;
+	size_t n_inner = get_factor(argv[0]) * 1000; // so dt = 1e-3 for ChinC
 
 	fprintf(stderr, "%.16g\n", energy(d->p, d->n));
 	for(size_t i = 0; i < n_dump; ++i) {
