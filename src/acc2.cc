@@ -22,7 +22,7 @@ void acc2(vector *a, vector *b, const particle *p, size_t n, real dt)
 			b[i].x += dx * df - fx * rr3;
 			b[i].y += dy * df - fy * rr3;
 			b[i].x += dz * df - fz * rr3;
-		}
+		} // 35 FLOP + 1 sqrt()
 	}
 
 	real h = -dt * dt / 8.0;

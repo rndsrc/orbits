@@ -17,7 +17,7 @@ size_t get_factor(const char *path)
 	const char *name = strrchr(path, '/');
 
 	if(strcmp("ChinC", name ? name + 1 : path))
-		return 6;
+		return 5;
 	else
 		return 1; // ChinC uses almost 6 times more FLOP than
 	                  // all other algorithms.  However it uses
