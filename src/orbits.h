@@ -25,7 +25,7 @@ scheme *get_scheme(const char *);
 size_t  get_factor(const char *);
 
 void acc (vector *, const particle *, size_t);
-void acc2(vector *, const particle *, size_t, real);
+void acc2(vector *, vector *, const particle *, size_t, real);
 real energy(const particle *, size_t);
 
 data *input(FILE *);

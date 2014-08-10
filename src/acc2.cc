@@ -1,41 +1,39 @@
 #include "orbits.h"
 #include <cmath>
 
-void acc2(vector *a, const particle *p, size_t n, real dt)
+void acc2(vector *a, vector *b, const particle *p, size_t n, real dt)
 {
-	const real h = dt * dt / 24.0;
+	acc(a, p, n);
 
 	for(size_t i = 0; i < n; ++i) {
-		real ax  = 0.0, ay  = 0.0, az  = 0.0;
-		real axx = 0.0, ayy = 0.0, azz = 0.0;
-		real axy = 0.0, ayz = 0.0, azx = 0.0;
+		b[i].z = b[i].y = b[i].x = 0.0;
 
 		for(size_t j = 0; j < n; ++j) if(j != i) {
 			real dx = p[j].r.x - p[i].r.x;
 			real dy = p[j].r.y - p[i].r.y;
 			real dz = p[j].r.z - p[i].r.z;
 			real rr = dx * dx + dy * dy + dz * dz;
-
 			real f  = p[j].m / (rr * sqrt(rr));
-			real g  = -3.0 * f / rr;
+			real fx = f * (a[j].x - a[i].x);
+			real fy = f * (a[j].y - a[i].y);
+			real fz = f * (a[j].z - a[i].z);
 
-			ax  += f * dx;
-			ay  += f * dy;
-			az  += f * dz;
-
-			axx += g * dx * dx - f;
-			ayy += g * dy * dy - f;
-			azz += g * dz * dz - f;
-
-			axy += g * dx * dy;
-			ayz += g * dy * dz;
-			azx += g * dz * dx;
+			b[i].x += fx * (3 * dx * dx / rr - 1)
+				+ fy * (3 * dy * dx / rr    )
+				+ fz * (3 * dz * dx / rr    );
+			b[i].y += fx * (3 * dx * dy / rr    )
+				+ fy * (3 * dy * dy / rr - 1)
+				+ fz * (3 * dz * dy / rr    );
+			b[i].z += fx * (3 * dx * dz / rr    )
+				+ fy * (3 * dy * dz / rr    )
+				+ fz * (3 * dz * dz / rr - 1);
 		}
+	}
 
-		a[i].x = ax - h * (ax * axx + ay * axy + az * azx);
-		a[i].y = ay - h * (ax * axy + ay * ayy + az * ayz);
-		a[i].z = az - h * (ax * azx + ay * ayz + az * azz);
-
-		// 60 FLOP + 1 sqrt()
+	real h = -dt * dt / 24.0;
+	for(size_t i = 0; i < n; ++i) {
+		a[i].x += h * b[i].x;
+		a[i].y += h * b[i].y;
+		a[i].z += h * b[i].z;
 	}
 }

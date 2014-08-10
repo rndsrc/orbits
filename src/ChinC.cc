@@ -3,9 +3,8 @@
 
 void ChinC(data *d, real dt)
 {
-	static vector *a = NULL;
-	if(!a)
-		a = (vector *)malloc(sizeof(vector) * d->n);
+	static vector *a = (vector *)malloc(sizeof(vector) * d->n);
+	static vector *b = (vector *)malloc(sizeof(vector) * d->n);
 
 	size_t    n = d->n;
 	particle *p = d->p;
@@ -31,7 +30,7 @@ void ChinC(data *d, real dt)
 		p[i].r.z += dt_3 * p[i].u.z;
 	}
 
-	acc2(a, p, n, dt);
+	acc2(a, b, p, n, dt);
 	for(size_t i = 0; i < n; ++i) {
 		p[i].u.x += dt_4 * a[i].x;
 		p[i].u.y += dt_4 * a[i].y;
