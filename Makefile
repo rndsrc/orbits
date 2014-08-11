@@ -1,5 +1,5 @@
 orbits: src/*.h src/*.c[cu]
-	g++ src/*.c[cu] -Wextra -O3 -lm -ldl -o bin/orbits
+	g++ src/*.c[cu] -Wextra -O3 -rdynamic -lm -ldl -o bin/orbits
 	@for p in src/[[:upper:]]*.cc; do \
 		ln -sf orbits bin/$${p:4:$${#p}-7}; \
 	done
