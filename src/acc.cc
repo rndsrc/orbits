@@ -31,11 +31,14 @@ void acc(vector *a, const particle *p, size_t n)
 			real dz = p[j].r.z - p[i].r.z;
 			real rr = dx * dx + dy * dy + dz * dz;
 			real f  = 1.0 / (rr * sqrt(rr));
+
 			real fi = f * p[i].m;
 			real fj = f * p[j].m;
+
 			a[i].x += fj * dx;
 			a[i].y += fj * dy;
 			a[i].z += fj * dz;
+
 			a[j].x -= fi * dx;
 			a[j].y -= fi * dy;
 			a[j].z -= fi * dz;
