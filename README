@@ -1,1 +1,23 @@
-A simple code to integrate orbits for few-body problems.
+Orbits is a simple code for solving direct n-body problems.  It is
+designed to make comparing different ODE integrators easy.  The
+current version includes 6 integrators.  They are
+
+	1st-order:	Forward Euler			[Euler]
+			Drift-kick modified Euler	[DK]
+			Kick-drift modified Euler	[KD]
+	2nd-order:	Drift-kick-drift leapfrog	[DKD]
+			Kick-drift-kick  leapfrog	[KDK]
+	4th-order:	Chin (1997) algorithm C		[ChinC]
+
+All these integrators, except [Euler], are symplectic.  They preserve
+the Hamiltonian structures of the n-body systems and provide excellent
+conservation properties of energy.
+
+To get started, simply run
+
+	bin/compare tests/circle
+
+in "orbits/".  The bash script "bin/compare" compiles and starts
+orbits with all six integrators.  The timing results will be printed
+on the screen once the calculations are done.  The output can be
+plotted by the IDL scripts in "tools/".
