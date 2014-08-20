@@ -42,6 +42,9 @@ data *input(FILE *f)
 		++d->n;
 	}
 
+	if(f != stdin)
+		fclose(f);
+
 	if(d->n)
 		return d;
 	else {

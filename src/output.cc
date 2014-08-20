@@ -32,4 +32,7 @@ void output(FILE *f, const data *d, const char *cmd, const char *fmt)
 		        d->p[i].m,
 		        d->p[i].r.x, d->p[i].r.y, d->p[i].r.z,
 		        d->p[i].u.x, d->p[i].u.y, d->p[i].u.z);
+
+	if(f != stdout)
+		fclose(f);
 }
