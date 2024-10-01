@@ -18,19 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Orbits.  If not, see <http://www.gnu.org/licenses/>.
 
-in=tests/circle
-if (( $# >= 1 )) && [ -e $1 ] ; then
-    in=$1
-fi
+[ "$#" -ge 1 ] && i="$1" || i="tests/circle"
 
-m=`cat $in | wc -l`
-n=`expr $m - 1`
-echo "Comparing $n-body problem: $in"
+echo haha
+
+n=$(expr $(cat $i | wc -l) - 1)
+echo "Comparing $n-body problem: $i"
+
 make
 
 for s in Euler DK KD KDK DKD ChinC; do
-    echo $n > $s.dat                                           # n-body
-    cat $in | awk "{if (count++%${m}) print \$0;}" >> $s.dat   # initial
-    time bin/$s 2> $s.eng < $in \
-	    | awk "{if (count++%${m}) print \$0;}" >> $s.dat & # outputs
+    time bin/simulate "$i" "$s" "$s"
 done

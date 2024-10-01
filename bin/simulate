@@ -28,5 +28,5 @@ n=$(expr $m - 1)
 
 echo "$n" > "$o.dat"                                        # n-body
 cat "$i" | awk "{if (count++%${m}) print \$0;}" >> "$o.dat" # initial
-time "bin/$s" 2> "$o.eng" < $i \
+"bin/$s" 2> "$o.eng" < $i \
 	 | awk "{if (count++%${m}) print \$0;}" >> "$o.dat" # outputs
