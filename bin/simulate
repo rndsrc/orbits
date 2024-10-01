@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Copyright (C) 2024 Chi-kwan Chan
+# Copyright (C) 2024 Steward Observatory
+#
+# This file is part of orbits.
+#
+# Orbits is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Orbits is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Orbits.  If not, see <http://www.gnu.org/licenses/>.
+
+[ "$#" -ge 1 ] && i="$1" || i="tests/circle"
+[ "$#" -ge 2 ] && o="$2" || o="out"
+[ "$#" -ge 3 ] && s="$3" || s="ChinC"
+[ "$#" -ge 4 ] && echo "usage: $0 INPUT [OUTPUT [SCHEME]]" && exit
+
+m=$(cat $i | wc -l)
+n=$(expr $m - 1)
+
+echo "$n" > "$o.dat"                                        # n-body
+cat "$i" | awk "{if (count++%${m}) print \$0;}" >> "$o.dat" # initial
+time "bin/$s" 2> "$o.eng" < $i \
+	 | awk "{if (count++%${m}) print \$0;}" >> "$o.dat" # outputs
